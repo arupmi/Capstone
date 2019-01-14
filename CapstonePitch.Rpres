@@ -1,0 +1,54 @@
+Coursera Data Science Capstone Project
+========================================================
+author: Arup Mitra
+
+This presentation will briefly but comprehensively pitch an [application](https://arupmitra.shinyapps.io/Capstone/) for predicting the next word.
+
+The application is the capstone project for the Coursera Data Science specialization at Johns Hopkins University and in cooperation with SwiftKey.
+
+
+The Objective
+========================================================
+
+The main goal of this capstone project is to build a shiny application that is able to predict the next word. 
+
+The data was read from the Twitter, Blog & News file samples that have been provided at https://d396qusza40orc.cloudfront.net/dsscapstone/dataset/Coursera-SwiftKey.zip 
+
+The large size of the files made it necessary to take a sample size of 10% in order to successfully compute using available resources.
+
+The data was ingested and then pre-processed by removing numbers, special symbols, and urls and then further text processing using the quanteda package was carried out as elaborated in the next section. 
+
+
+The Applied Methods & Models
+========================================================
+
+After the pre-processing step, the sample was tokenized into n-grams (where in this case n=1,2 and 3). Document Feature Matrices (DFM) were then created for each of the n-grams and saved to .RData files. 
+
+These .RData files form the input to the Shiny application.
+
+The basic philosophy of the application is to consider phrases comprising 1 to 3 consecutive words, and predicting the last word of the sequence based on a probability table constructed using the n-grams. 
+
+The probability is based on the frequency distribution of the tokens in the n-grams and then smoothened out using the  [Kneser Kney Algorithm](https://en.wikipedia.org/wiki/Kneser%E2%80%93Ney_smoothing) with a discount value of 0.75.
+
+
+
+The Usage Of The Application
+========================================================
+
+The user interface of this application was designed to be simple and intuitive. It consists of one input text field where the user may enter any number of words. 
+
+The application then predicts the next word as the user types each word. 
+
+![Screenshot](shiny.jpg)
+
+
+Additional Information
+========================================================
+
+* The next word prediction app is hosted on shinyapps.io: [https://arupmitra.shinyapps.io/Capstone/](https://arupmitra.shinyapps.io/Capstone/)
+
+
+* The whole code of this application, as well as all the milestone report, related scripts, this presentation  etc. can be found in this GitHub repo: [https://github.com/arupmi/Capstone](https://github.com/arupmi/Capstone)
+
+* This pitch deck is located here: [http://rpubs.com/arupmi/WordPredictPresentation](http://rpubs.com/arupmi/WordPredictPresentation)
+
